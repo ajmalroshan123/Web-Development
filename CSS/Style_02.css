@@ -1,0 +1,25 @@
+h1{
+    /* % of viewport width */
+    font-size: 10vw;
+    font-weight: 50;
+    font-style: oblique;
+    font-stretch:expanded;
+    background-color: blue !important;
+}
+
+h1[draggable='false']{
+    background-color: aquamarine;
+}
+p{
+    /* cap between lines */
+    line-height: 40px;
+    /* space between letter */
+    letter-spacing: 2px;
+    /* word-spacing: 2px; */
+    text-transform: uppercase;
+    background-color: brown;
+}
+
+article p{
+    background-color: blueviolet;
+}

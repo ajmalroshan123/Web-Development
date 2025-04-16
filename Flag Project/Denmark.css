@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.first, .third{
+    display: inline-block;
+    height: 40vh;
+    width: 25vw;
+    background-color: brown;
+}
+
+.second, .forth{
+    display: inline-block;
+    height: 40vh;
+    width: 60vw;
+    background-color: brown;
+    margin-left: 13vw;
+    
+}
+
+.third, .forth{
+    margin-top: 20vh;
+}

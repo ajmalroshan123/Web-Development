@@ -1,0 +1,17 @@
+*{
+    margin:0;
+}
+
+.circle{
+    height: 60vh;
+    width: 60vh;
+    background-color: brown;
+    border: 2px black solid;
+    border-radius: 50%;
+    margin-left: 37%;
+    /* margin: auto;  horizontally bring element center */
+}
+
+body{
+    background-color: rgb(243, 235, 191);
+}
