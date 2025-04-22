@@ -72,7 +72,7 @@ body {
     top: 200px;
 }
 
-.first, .second {
+.first{
     margin-left: 150px;
 }
 
@@ -124,5 +124,19 @@ button {
 .second {
     margin-top: 3em;
     /* margin-bottom: .1em; */
-    padding-bottom: 2em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    position: sticky;
+    top: 0px;
+    background-color: rgb(255, 255, 255);
 }
+
+.third {
+    height: 250px;
+    background-color: rgb(202, 200, 200);
+}
+
+.dining {
+    margin-left: 140px;
+}
+
