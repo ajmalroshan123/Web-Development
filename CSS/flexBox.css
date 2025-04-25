@@ -1,0 +1,37 @@
+
+.container {
+    display: flex;
+    background-color: aquamarine;
+    height: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    height: 100px;
+    width: 100px;
+    border: 2px solid black;
+
+}
+
+.box1 {
+    background-color: blue;
+    order: -1;
+}
+/* flex item */
+/* order , it defines the order of items,  default order is 0 */
+
+.box2 {
+    background-color: rgb(0, 255, 115);
+    order: 0;
+}
+
+.box3 {
+    background-color: brown;
+    order: 1;
+    flex-shrink: 2;
+}
+
+.box4 {
+    background-color: rgb(145, 255, 0);
+}
