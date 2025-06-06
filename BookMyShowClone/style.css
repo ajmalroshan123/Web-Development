@@ -11,6 +11,7 @@
 }
 
 .nav_logo {
+    display: flex;
     color: white;
 }
 
@@ -74,7 +75,7 @@
 
 .mover {
     text-align: center;
-    margin-top: 1.8rem;
+    margin-top: 1.5rem;
 }
 
 .mover > h2 {
@@ -84,12 +85,35 @@
 
 .movie_list {
     display: flex;
+    margin-top: 1rem;
+    overflow-x: scroll;
 }
 
 .movie_card {
-    border: 0.2rem solid rgb(201, 201, 201);
+    border: 0.2rem solid rgb(172, 170, 170);
+    background-color: rgb(192, 191, 191);
+    margin-left: 1rem;
 }
 
 .movie_card_image {
     height: 200px;
+}
+
+
+@media (max-width:650px) 
+{
+    .nav_logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav_items {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .movie_list{
+        flex-direction: column;
+    }
 }
