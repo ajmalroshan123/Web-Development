@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookMyShow - Your Entertainment Partner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #e74c3c, #8e44ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: linear-gradient(45deg, #e74c3c, #8e44ad);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 25px;
+            padding: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 0 2rem;
+        }
+
+        .search-input {
+            border: none;
+            outline: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            width: 300px;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            background: linear-gradient(45deg, #e74c3c, #8e44ad);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><circle fill="%23764ba2" cx="200" cy="150" r="100" opacity="0.7"/><circle fill="%23f093fb" cx="800" cy="400" r="150" opacity="0.5"/><circle fill="%23f5576c" cx="1000" cy="200" r="80" opacity="0.6"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        /* Content Sections */
+        .content-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Movie Grid */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .movie-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .movie-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .movie-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 2s infinite;
+        }
+
+        .movie-info {
+            padding: 1.5rem;
+        }
+
+        .movie-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .movie-genre {
+            color: #666;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .movie-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffc107;
+            margin-right: 0.5rem;
+        }
+
+        .book-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #e74c3c, #8e44ad);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .book-btn:hover {
+            background: linear-gradient(45deg, #c0392b, #7d3c98);
+            transform: scale(1.02);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                order: 3;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .search-container {
+                order: 2;
+                margin: 0;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .filter-bar {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .movie-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal h2 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .seat-selection {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .seat {
+            width: 30px;
+            height: 30px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .seat:hover {
+            background: #667eea;
+        }
+
+        .seat.selected {
+            background: #e74c3c;
+        }
+
+        .seat.occupied {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">BookMyShow</div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for Movies, Events, Sports..." id="searchInput">
+                <button class="search-btn" onclick="searchContent()">🔍</button>
+            </div>
+            
+            <div class="nav-menu">
+                <button class="nav-btn active" onclick="showContent('movies')">Movies</button>
+                <button class="nav-btn" onclick="showContent('events')">Events</button>
+                <button class="nav-btn" onclick="showContent('sports')">Sports</button>
+                <button class="nav-btn" onclick="showContent('offers')">Offers</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Experience Entertainment Like Never Before</h1>
+        <p>Book tickets for the latest movies, exciting events, and thrilling sports matches</p>
+        <button class="cta-btn" onclick="scrollToContent()">Explore Now</button>
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterContent('all')">All</button>
+        <button class="filter-btn" onclick="filterContent('action')">Action</button>
+        <button class="filter-btn" onclick="filterContent('comedy')">Comedy</button>
+        <button class="filter-btn" onclick="filterContent('drama')">Drama</button>
+        <button class="filter-btn" onclick="filterContent('thriller')">Thriller</button>
+        <button class="filter-btn" onclick="filterContent('romance')">Romance</button>
+    </div>
+
+    <!-- Content Section -->
+    <section class="content-section" id="contentSection">
+        <h2 class="section-title" id="sectionTitle">Popular Movies</h2>
+        <div class="movie-grid" id="contentGrid">
+            <!-- Content will be dynamically generated -->
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h2 id="modalTitle">Book Tickets</h2>
+            <div id="modalContent">
+                <p><strong>Movie:</strong> <span id="selectedMovie"></span></p>
+                <p><strong>Genre:</strong> <span id="selectedGenre"></span></p>
+                <p><strong>Show Time:</strong></p>
+                <div style="display: flex; gap: 1rem; margin: 1rem 0;">
+                    <button class="filter-btn" onclick="selectTime('10:00 AM')">10:00 AM</button>
+                    <button class="filter-btn" onclick="selectTime('1:00 PM')">1:00 PM</button>
+                    <button class="filter-btn" onclick="selectTime('4:00 PM')">4:00 PM</button>
+                    <button class="filter-btn" onclick="selectTime('7:00 PM')">7:00 PM</button>
+                </div>
+                <p><strong>Select Seats:</strong></p>
+                <div class="seat-selection" id="seatSelection">
+                    <!-- Seats will be generated dynamically -->
+                </div>
+                <div style="margin-top: 1rem;">
+                    <p><strong>Total: ₹<span id="totalAmount">0</span></strong></p>
+                    <button class="cta-btn" style="width: 100%; margin-top: 1rem;" onclick="confirmBooking()">Confirm Booking</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data
+        const moviesData = [
+            { id: 1, title: "Avengers: Endgame", genre: "Action", rating: 4.8, price: 250, category: "action" },
+            { id: 2, title: "The Dark Knight", genre: "Action", rating: 4.9, price: 200, category: "action" },
+            { id: 3, title: "Inception", genre: "Thriller", rating: 4.7, price: 220, category: "thriller" },
+            { id: 4, title: "The Hangover", genre: "Comedy", rating: 4.2, price: 180, category: "comedy" },
+            { id: 5, title: "Titanic", genre: "Romance", rating: 4.6, price: 190, category: "romance" },
+            { id: 6, title: "The Godfather", genre: "Drama", rating: 4.9, price: 230, category: "drama" },
+            { id: 7, title: "Spider-Man: No Way Home", genre: "Action", rating: 4.5, price: 280, category: "action" },
+            { id: 8, title: "Joker", genre: "Drama", rating: 4.4, price: 210, category: "drama" }
+        ];
+
+        const eventsData = [
+            { id: 1, title: "AR Rahman Live Concert", genre: "Music", rating: 4.8, price: 1500, category: "music" },
+            { id: 2, title: "Stand-up Comedy Night", genre: "Comedy", rating: 4.3, price: 800, category: "comedy" },
+            { id: 3, title: "Tech Conference 2025", genre: "Technology", rating: 4.6, price: 2000, category: "tech" },
+            { id: 4, title: "Food Festival", genre: "Food", rating: 4.4, price: 500, category: "food" }
+        ];
+
+        const sportsData = [
+            { id: 1, title: "IPL Final 2025", genre: "Cricket", rating: 4.9, price: 3000, category: "cricket" },
+            { id: 2, title: "ISL Football Match", genre: "Football", rating: 4.5, price: 1200, category: "football" },
+            { id: 3, title: "Badminton Championship", genre: "Badminton", rating: 4.3, price: 800, category: "badminton" }
+        ];
+
+        let currentData = moviesData;
+        let currentFilter = 'all';
+        let selectedSeats = [];
+        let selectedTime = '';
+        let currentBookingItem = null;
+
+        // Initialize the page
+        function init() {
+            showContent('movies');
+        }
+
+        // Show different content types
+        function showContent(type) {
+            // Update active nav button
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Set data and title based on type
+            switch(type) {
+                case 'movies':
+                    currentData = moviesData;
+                    document.getElementById('sectionTitle').textContent = 'Popular Movies';
+                    break;
+                case 'events':
+                    currentData = eventsData;
+                    document.getElementById('sectionTitle').textContent = 'Trending Events';
+                    break;
+                case 'sports':
+                    currentData = sportsData;
+                    document.getElementById('sectionTitle').textContent = 'Live Sports';
+                    break;
+                case 'offers':
+                    currentData = [...moviesData, ...eventsData, ...sportsData].filter(item => item.price < 250);
+                    document.getElementById('sectionTitle').textContent = 'Special Offers';
+                    break;
+            }
+
+            renderContent(currentData);
+        }
+
+        // Filter content
+        function filterContent(category) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            currentFilter = category;
+            let filteredData = category === 'all' ? currentData : currentData.filter(item => item.category === category);
+            renderContent(filteredData);
+        }
+
+        // Render content grid
+        function renderContent(data) {
+            const grid = document.getElementById('contentGrid');
+            grid.innerHTML = '';
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'movie-card';
+                card.innerHTML = `
+                    <div class="movie-image">
+                        <div style="text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎬</div>
+                            <div>${item.title}</div>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        <div class="movie-title">${item.title}</div>
+                        <div class="movie-genre">${item.genre}</div>
+                        <div class="movie-rating">
+                            <span class="stars">${'★'.repeat(Math.floor(item.rating))}${item.rating % 1 ? '☆' : ''}</span>
+                            <span>${item.rating}/5</span>
+                        </div>
+                        <button class="book-btn" onclick="openBookingModal(${item.id})">
+                            Book Now - ₹${item.price}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Search functionality
+        function searchContent() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const allData = [...moviesData, ...eventsData, ...sportsData];
+            const filteredData = allData.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.genre.toLowerCase().includes(query)
+            );
+            
+            document.getElementById('sectionTitle').textContent = `Search Results for "${query}"`;
+            renderContent(filteredData);
+        }
+
+        // Scroll to content
+        function scrollToContent() {
+            document.getElementById('contentSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Open booking modal
+        function openBookingModal(itemId) {
+            const allData = [...moviesData, ...eventsData, ...sportsData];
+            currentBookingItem = allData.find(item => item.id === itemId);
+            
+            document.getElementById('selectedMovie').textContent = currentBookingItem.title;
+            document.getElementById('selectedGenre').textContent = currentBookingItem.genre;
+            
+            generateSeats();
+            document.getElementById('bookingModal').style.display = 'block';
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            selectedSeats = [];
+            selectedTime = '';
+            updateTotal();
+        }
+
+        // Select time
+        function selectTime(time) {
+            document.querySelectorAll('.modal-content .filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            selectedTime = time;
+        }
+
+        // Generate seats
+        function generateSeats() {
+            const seatContainer = document.getElementById('seatSelection');
+            seatContainer.innerHTML = '';
+            
+            for (let i = 1; i <= 32; i++) {
+                const seat = document.createElement('button');
+                seat.className = 'seat';
+                seat.textContent = i;
+                seat.onclick = () => toggleSeat(i);
+                
+                // Randomly make some seats occupied
+                if (Math.random() < 0.3) {
+                    seat.classList.add('occupied');
+                    seat.onclick = null;
+                }
+                
+                seatContainer.appendChild(seat);
+            }
+        }
+
+        // Toggle seat selection
+        function toggleSeat(seatNumber) {
+            const seat = event.target;
+            const index = selectedSeats.indexOf(seatNumber);
+            
+            if (index > -1) {
+                selectedSeats.splice(index, 1);
+                seat.classList.remove('selected');
+            } else {
+                selectedSeats.push(seatNumber);
+                seat.classList.add('selected');
+            }
+            
+            updateTotal();
+        }
+
+        // Update total amount
+        function updateTotal() {
+            const total = selectedSeats.length * (currentBookingItem ? currentBookingItem.price : 0);
+            document.getElementById('totalAmount').textContent = total;
+        }
+
+        // Confirm booking
+        function confirmBooking() {
+            if (selectedSeats.length === 0) {
+                alert('Please select at least one seat!');
+                return;
+            }
+            if (!selectedTime) {
+                alert('Please select a show time!');
+                return;
+            }
+            
+            const total = selectedSeats.length * currentBookingItem.price;
+            alert(`Booking Confirmed!\n\nMovie: ${currentBookingItem.title}\nSeats: ${selectedSeats.join(', ')}\nTime: ${selectedTime}\nTotal: ₹${total}\n\nThank you for booking with BookMyShow!`);
+            closeModal();
+        }
+
+        // Search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchContent();
+            }
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('bookingModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Initialize the page
+        init();
+    </script>
+</body>
+</html>
