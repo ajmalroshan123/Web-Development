@@ -73,6 +73,8 @@ body {
 }
 
 .first{
+    display: flex;
+    justify-content: space-around;
     margin-left: 150px;
 }
 
@@ -87,6 +89,8 @@ body {
     height: 25px;
     width: 250px;
     margin-right: 50px;
+    position: relative;
+    top: 1rem;
 }
 
 button {
@@ -114,11 +118,12 @@ button {
     left: 5px;
     font-size: 15px;
     color: rgb(128, 128, 128);
+    margin-right: 140px;
 }
 
 .delivery {
     margin-left: 4em;
-    margin-right: 4em;
+    margin-right: 140px;
 }
 
 .second {
@@ -129,6 +134,9 @@ button {
     position: sticky;
     top: 0px;
     background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-evenly;
+    margin-right: 5rem;
 }
 
 .third {
@@ -138,5 +146,15 @@ button {
 
 .dining {
     margin-left: 140px;
+    margin-right: 100px;
 }
 
+.log {
+    position: relative;
+    top: 1rem;
+}
+
+.sign {
+    position: relative;
+    top: 1rem;
+}

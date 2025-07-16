@@ -60,7 +60,7 @@ let account_number = '123321';
 console.log(typeof Number(account_number))
 
 let account = "100CSS"
-console.log(Number(account));  // NaN
+console.log(Number(account), "kooi");  // NaN
 
 let num = 20;
 console.log(typeof String(num));
@@ -70,3 +70,7 @@ console.log(typeof state);
 
 console.log(typeof Number(state));
 
+
+let sum = 20;
+total = ++sum;
+console.log(total)
