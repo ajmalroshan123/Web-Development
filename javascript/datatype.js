@@ -74,3 +74,6 @@ console.log(typeof Number(state));
 let sum = 20;
 total = ++sum;
 console.log(total)
+
+// post increament sum++ and post decreament sum--  // this is assign the value and increment or decreament ==>> total = sum++;
+// per increment ++sum and pre decrement --sum  // this will increament or decreament then assign the value ==>> total = --sum;
