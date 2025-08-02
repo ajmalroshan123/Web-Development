@@ -19,3 +19,7 @@ console.log(Math.floor(Math.random()*10));
 
 console.log(Math.floor(Math.random()*10)+1); // 1 to 10
 console.log(Math.floor(Math.random()*10)+11) // 11 to 20
+
+
+// console.log(Math.floor(Math.random()*(max-min+1)+min))
+console.log(Math.floor(Math.random()*(30-10+1)+10))
