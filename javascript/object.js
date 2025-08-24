@@ -62,3 +62,18 @@ for (let k in obj3) {
     console.log(k);
     
 }
+
+
+
+user = {
+    name: "rohit",
+    age: 29
+}
+
+Object.defineProperty(user, "name" , {
+    writable: false
+})
+
+user.name = "AJMAL"
+
+console.log(Object.getOwnPropertyDescriptor(user, "name"));

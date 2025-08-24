@@ -14,3 +14,13 @@ for(let i = 0; i < arr.length; i++) {
     console.log(i, arr[i]);
     
 }
+
+
+// for of loop
+// Don't use for of loop  with object
+
+nums = [1,2,4,5];
+for (let value of nums) {
+    console.log(value);
+    
+}
