@@ -1,36 +1,67 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .container {
-    text-align: center;
-    background: #fff;
-    padding: 20px 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1 {
-    margin-bottom: 20px;
-    color: #555;
-  }
-  
-  .quote-box {
-    margin: 20px 0;
-    padding: 20px;
-    border-left: 4px solid #007bff;
-    font-style: italic;
-    background: #f9f9f9;
-    border-radius: 5px;
-  }
-  
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  transition: background 1s ease-in-out;
+}
 
-  
+.container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px 50px;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.quote-box {
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 5px solid #007bff;
+  font-style: italic;
+  background: #f9f9f9;
+  border-radius: 8px;
+  min-height: 100px;
+  position: relative;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#quote {
+  font-size: 1.3rem;
+  line-height: 1.6;
+}
+
+#author {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #007bff;
+  font-size: 1.1rem;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
