@@ -20,7 +20,7 @@ button.addEventListener('click', ()=>{
 
     const result = number1+number2;
     const re = document.getElementById('result');
-    re.textContent = "Result: "+result;
+    re.textContent += result;
 })
 
 
